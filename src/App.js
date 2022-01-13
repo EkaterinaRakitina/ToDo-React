@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import './App.scss';
 
-function App() {
+const App = () => {
   const [tasks, setTasks] = useState([]);
 
   useEffect(async() => {
@@ -11,8 +11,6 @@ function App() {
       setTasks(res.data.data);
     });
   }, [])
-  
-  console.log(tasks);
 
   return (
     <div className="App">
