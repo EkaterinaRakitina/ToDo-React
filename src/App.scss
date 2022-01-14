@@ -1,15 +1,16 @@
 .App {
   text-align: center;
+  background-color: #282c34;
+  min-height: 100vh;
+  font-size: calc(10px + 2vmin);
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  min-height: 21vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  font-size: calc(10px + 2vmin);
   color: white;
 
   div {
@@ -23,7 +24,7 @@
     border: 2px transparent;
     outline: none;
     margin-right: 10px;
-  } 
+  }
 
   input:hover {
     outline: 2px solid #0f64d3f2;
@@ -45,5 +46,15 @@
     color: #0f64d3f2;
     box-shadow: 6px 2px 19px 2px #0f64d3f2;
   }
-  
+}
+
+.Render-tasks {
+  min-height: 30vh;
+  max-width: 30vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  margin: 0 auto;
+  color: white;
 }
