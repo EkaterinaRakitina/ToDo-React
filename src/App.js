@@ -9,8 +9,7 @@ const App = () => {
 
   useEffect(async () => {
     await axios.get('http://localhost:8000/allTasks').then((res) => {
-      // setTasks(res.data.data);
-      console.log(res.data.data);
+      setTasks(res.data.data);
     });
   }, []);
 
@@ -19,8 +18,7 @@ const App = () => {
       text,
       isCheck: false
     }).then((res) => {
-      console.log(res.data);
-      // setTasks(res.data.data);
+      setTasks(res.data.data);
     });
   };
 
