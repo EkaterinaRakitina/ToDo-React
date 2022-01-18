@@ -39,11 +39,11 @@ const App = () => {
         </div>
       </header>
         {tasks.map((task, index) => (
-          <div key={`task-${index}`}>
+          <div className='Task-container' key={`task-${index}`}>
             <TaskComponent
               setTasks={setTasks}
               task={task}
-            />
+              />
           </div>
         ))}
     </div>
