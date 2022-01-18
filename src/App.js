@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import TaskComponent from './components/TaskComponent/TaskComponent';
 import './App.scss';
 
 const App = () => {
@@ -24,33 +24,28 @@ const App = () => {
         setTasks(res.data.data);
       });
   };
-  
-console.log(tasks);
 
   return (
-    <div className='App'>
-      <header className='App-header'>
+    <div className="App">
+      <header className="App-header">
         <h1>To-Do List</h1>
         <div>
           <input
-            type='text'
+            type="text"
             value={text}
             onChange={(e) => setText(e.target.value)}
           />
           <button onClick={() => addNewTask()}>Add</button>
         </div>
       </header>
-      <div className='Render-tasks'>
-        {
-          tasks.map((task, index) => 
-            <div key={`task-${index}`}>
-              <input type='checkbox'  onChange={() => console.log('1')} checked={task.isCheck} />
-              <span>{task.text}</span>
-            </div>
-
-          )
-        }
-      </div>
+        {tasks.map((task, index) => (
+          <div key={`task-${index}`}>
+            <TaskComponent
+              setTasks={setTasks}
+              task={task}
+            />
+          </div>
+        ))}
     </div>
   );
 };
