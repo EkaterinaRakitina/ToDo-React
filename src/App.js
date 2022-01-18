@@ -25,8 +25,6 @@ const App = () => {
       });
   };
 
-  console.log(tasks);
-
   return (
     <div className="App">
       <header className="App-header">
