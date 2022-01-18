@@ -38,7 +38,6 @@ const App = () => {
           <button onClick={() => addNewTask()}>Add</button>
         </div>
       </header>
-      <div className="Content-page">
         {tasks.map((task, index) => (
           <div key={`task-${index}`}>
             <TaskComponent
@@ -47,7 +46,6 @@ const App = () => {
             />
           </div>
         ))}
-      </div>
     </div>
   );
 };

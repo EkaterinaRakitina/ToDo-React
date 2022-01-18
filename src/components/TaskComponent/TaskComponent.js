@@ -20,7 +20,7 @@ const TaskComponent = ({ setTasks, task }) => {
       <input
         type="checkbox"
         onChange={() => onChangeCheckbox()}
-        isCheck={isCheck}
+        checked={isCheck}
       />
       <span>{text}</span>
     </div>
