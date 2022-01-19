@@ -4,7 +4,7 @@ import deleteIcon from '../../img/delete.svg';
 import editIcon from '../../img/edit.svg';
 import './ComponentStyle.scss';
 
-const TaskComponent = ({ setTasks, task }) => {
+const TaskComponent = ({ setTasks, task, editTask, index }) => {
   const { _id, isCheck, text } = task;
 
   const onChangeCheckbox = () => {
@@ -31,7 +31,7 @@ const TaskComponent = ({ setTasks, task }) => {
         checked={isCheck}
       />
       <span>{text}</span>
-      <img src={editIcon} alt="EditIcon" />
+      <img src={editIcon} alt="EditIcon"  onClick={() => editTask(index)} />
       <img src={deleteIcon} alt="DeleteIcon" onClick={() => deleteTask()} />
     </div>
   );

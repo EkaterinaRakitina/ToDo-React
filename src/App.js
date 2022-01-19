@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import TaskComponent from './components/TaskComponent/TaskComponent';
+import EditTaskComponent from './components/EditTaskComponent/EditTaskComponent';
 import './App.scss';
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
   const [text, setText] = useState('');
+  const [currentTask, setCurrentTask] = useState(-1);
 
   useEffect(() => {
     axios.get('http://localhost:8000/allTasks').then((res) => {
@@ -25,6 +27,10 @@ const App = () => {
       });
   };
 
+  const editTask = (index) => {
+    setCurrentTask(index);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -38,14 +44,27 @@ const App = () => {
           <button onClick={() => addNewTask()}>Add</button>
         </div>
       </header>
-        {tasks.map((task, index) => (
-          <div className='Task-container' key={`task-${index}`}>
+      {tasks.map((task, index) => (
+        <div className="Task-container" key={`task-${index}`}>
+          {currentTask !== index && (
             <TaskComponent
               setTasks={setTasks}
               task={task}
-              />
-          </div>
-        ))}
+              setCurrentTask={setCurrentTask}
+              editTask={editTask}
+              index={index}
+            />
+          )}
+
+          {currentTask === index && (
+            <EditTaskComponent
+              task={task}
+              setTasks={setTasks}
+              setCurrentTask={setCurrentTask}
+            />
+          )}
+        </div>
+      ))}
     </div>
   );
 };
