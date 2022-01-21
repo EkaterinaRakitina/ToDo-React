@@ -1,5 +1,26 @@
 .Task-container {
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+
+  div {
+    display: flex;
+    align-items: center;
+  }
+
+  input {
+    margin-right: 10px;
+  }
+
+  span {
+    display: inline-block;
+    max-width: 327px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
   img {
     width: 25px;
