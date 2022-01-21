@@ -1,5 +1,16 @@
 .Task-container {
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  span {
+    display: inline-block;
+    max-width: 327px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
   img {
     width: 25px;

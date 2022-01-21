@@ -32,16 +32,20 @@ const TaskComponent = ({ setTasks, task, setCurrentTask, index }) => {
 
   return (
     <div className="Task-container" key={`task-${index}`}>
-      <input
-        type="checkbox"
-        onChange={() => onChangeCheckbox()}
-        checked={isCheck}
-      />
-      <span>{text}</span>
-      {isCheck === false && (
-        <img src={editIcon} alt="EditIcon" onClick={() => editTask()} />
-      )}
-      <img src={deleteIcon} alt="DeleteIcon" onClick={() => deleteTask()} />
+      <div>
+        <input
+          type="checkbox"
+          onChange={() => onChangeCheckbox()}
+          checked={isCheck}
+        />
+        <span>{text}</span>
+      </div>
+      <div>
+        {isCheck === false && (
+          <img src={editIcon} alt="EditIcon" onClick={() => editTask()} />
+        )}
+        <img src={deleteIcon} alt="DeleteIcon" onClick={() => deleteTask()} />
+      </div>
     </div>
   );
 };
