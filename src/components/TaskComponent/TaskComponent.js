@@ -41,9 +41,7 @@ const TaskComponent = ({ setTasks, task, setCurrentTask, index }) => {
         <span>{text}</span>
       </div>
       <div>
-        {isCheck === false && (
-          <img src={editIcon} alt="EditIcon" onClick={() => editTask()} />
-        )}
+        {!isCheck && <img src={editIcon} alt="EditIcon" onClick={() => editTask()} />}
         <img src={deleteIcon} alt="DeleteIcon" onClick={() => deleteTask()} />
       </div>
     </div>
