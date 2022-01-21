@@ -1,6 +1,6 @@
 import React from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import deleteIcon from '../../img/delete.svg';
 import editIcon from '../../img/edit.svg';
 import './ComponentStyle.scss';
@@ -28,7 +28,7 @@ const TaskComponent = ({ setTasks, task, setCurrentTask, index }) => {
   const editTask = () => {
     setCurrentTask(task);
     navigate(`/edit/${_id}`);
-  }
+  };
 
   return (
     <div className="Task-container" key={`task-${index}`}>
@@ -47,5 +47,3 @@ const TaskComponent = ({ setTasks, task, setCurrentTask, index }) => {
 };
 
 export default TaskComponent;
-
-
