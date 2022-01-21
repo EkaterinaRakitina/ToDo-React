@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import axios from 'axios';
-import TaskComponent from './components/TaskComponent/TaskComponent';
 import EditTaskComponent from './components/EditTaskComponent/EditTaskComponent';
+import ContainerTaskComponent from './components/ContainerTaskComponent/ContainerTaskComponent';
 import './App.scss';
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
   const [text, setText] = useState('');
-  const [currentTask, setCurrentTask] = useState(-1);
+  const [currentTask, setCurrentTask] = useState({});
 
   useEffect(() => {
     axios.get('http://localhost:8000/allTasks').then((res) => {
@@ -27,10 +28,6 @@ const App = () => {
       });
   };
 
-  const editTask = (index) => {
-    setCurrentTask(index);
-  };
-
   return (
     <div className="App">
       <header className="App-header">
@@ -44,27 +41,19 @@ const App = () => {
           <button onClick={() => addNewTask()}>Add</button>
         </div>
       </header>
-      {tasks.map((task, index) => (
-        <div className="Task-container" key={`task-${index}`}>
-          {currentTask !== index && (
-            <TaskComponent
-              setTasks={setTasks}
-              task={task}
-              setCurrentTask={setCurrentTask}
-              editTask={editTask}
-              index={index}
+          <Routes>
+            <Route
+              path="/home"
+              element={
+                <ContainerTaskComponent tasks={tasks} setTasks={setTasks} setCurrentTask={setCurrentTask} />
+              }
             />
-          )}
-
-          {currentTask === index && (
-            <EditTaskComponent
-              task={task}
-              setTasks={setTasks}
-              setCurrentTask={setCurrentTask}
+            <Route
+              path="/edit/:id"
+              element={<EditTaskComponent task={currentTask} setTasks={setTasks} />}
             />
-          )}
-        </div>
-      ))}
+            <Route path="*" element={<Navigate to="/home" />} />
+          </Routes>
     </div>
   );
 };
