@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import doneIcon from '../../img/done.svg';
 import canselIcon from '../../img/cancel.svg';
@@ -7,10 +8,7 @@ import './ComponentStyle.scss';
 const EditTaskComponent = ({ task, setTasks, setCurrentTask }) => {
   const { _id, isCheck, text } = task;
   const [inputValue, setInputValue] = useState(text);
-
-  const cancelFunction = () => {
-    setCurrentTask(-1);
-  };
+  const navigate = useNavigate();
 
   const saveResultTask = () => {
     axios
@@ -22,7 +20,11 @@ const EditTaskComponent = ({ task, setTasks, setCurrentTask }) => {
         setTasks(res.data.data);
       });
 
-    cancelFunction();
+    goHome();
+  };
+
+  const goHome = () => {
+    navigate(`/home`);
   };
 
   return (
@@ -33,7 +35,7 @@ const EditTaskComponent = ({ task, setTasks, setCurrentTask }) => {
         onChange={(e) => setInputValue(e.target.value)}
       />
       <img src={doneIcon} alt="DoneIcon" onClick={() => saveResultTask()} />
-      <img src={canselIcon} alt="CancelIcon" onClick={() => cancelFunction()} />
+      <img src={canselIcon} alt="CancelIcon" onClick={() => goHome()} />
     </div>
   );
 };

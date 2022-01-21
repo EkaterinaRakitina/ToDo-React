@@ -1,16 +1,18 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import deleteIcon from '../../img/delete.svg';
 import editIcon from '../../img/edit.svg';
 import './ComponentStyle.scss';
 
-const TaskComponent = ({ setTasks, task, editTask, index }) => {
+const TaskComponent = ({ setTasks, task, setCurrentTask, index }) => {
   const { _id, isCheck, text } = task;
+  const navigate = useNavigate();
 
   const onChangeCheckbox = () => {
     axios
       .patch(`http://localhost:8000/updateTask?id=${_id}`, {
-        isCheck: !isCheck
+        isCheck: !isCheck,
       })
       .then((res) => {
         setTasks(res.data.data);
@@ -23,15 +25,22 @@ const TaskComponent = ({ setTasks, task, editTask, index }) => {
     });
   };
 
+  const editTask = () => {
+    setCurrentTask(task);
+    navigate(`/edit/${_id}`);
+  };
+
   return (
-    <div className="Task-container">
+    <div className="Task-container" key={`task-${index}`}>
       <input
         type="checkbox"
         onChange={() => onChangeCheckbox()}
         checked={isCheck}
       />
       <span>{text}</span>
-      <img src={editIcon} alt="EditIcon"  onClick={() => editTask(index)} />
+      {isCheck === false && (
+        <img src={editIcon} alt="EditIcon" onClick={() => editTask()} />
+      )}
       <img src={deleteIcon} alt="DeleteIcon" onClick={() => deleteTask()} />
     </div>
   );
